@@ -82,6 +82,8 @@ export default function Payment() {
         method: method.id,
         fields: values,
         reference,
+        lines: items,
+        customer: draft,
         onStage: setStage,
       })
     } catch {
@@ -105,8 +107,9 @@ export default function Payment() {
         delivery,
         total,
         /* The method label only — no card, UPI or bank detail is stored. */
-        paymentMethod: method.label,
+        paymentMethod: result.methodLabel ?? method.label,
         gateway: gateway.label,
+        paymentId: result.paymentId ?? null,
         delivery_to: draft,
       })
       clearDraft()

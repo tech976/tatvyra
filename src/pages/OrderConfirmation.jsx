@@ -71,6 +71,12 @@ export default function OrderConfirmation() {
               <dt>Paid by</dt>
               <dd>{order.paymentMethod}</dd>
             </div>
+            {order.paymentId && (
+              <div>
+                <dt>Payment ID</dt>
+                <dd>{order.paymentId}</dd>
+              </div>
+            )}
           </dl>
 
           <section className="confirm__block">
@@ -89,11 +95,10 @@ export default function OrderConfirmation() {
 
           <section className="confirm__block">
             <h2 className="checkout__subtitle">What happens next</h2>
-            {/* No fulfilment system is connected, so this says what is actually
-                true rather than promising a dispatch email that nothing sends. */}
+            {/* The order reaches the team through the Razorpay order notes; no
+                email system is connected, so nothing here promises one. */}
             <p className="confirm__note">
-              This store is a prototype: the payment step is a demonstration and no live provider is
-              connected yet, so nothing has been charged and no dispatch is scheduled. Quote{' '}
+              The team will pack and dispatch your order. Quote{' '}
               <strong>{order.reference}</strong> if you get in touch at{' '}
               <a href={`mailto:${BRAND.contact.emails[0]}`}>{BRAND.contact.emails[0]}</a>.
             </p>
